@@ -6,12 +6,14 @@ from rest_framework.response import Response
 from django.conf import settings
 from django.contrib import auth
 import jwt
-
+from .renderers import UserRenderer
 # Create your views here.
 
 
 class RegisterView(GenericAPIView):
     serializer_class = UserSerializer
+    renderer_classes = (UserRenderer,)
+
 
     def post(self, request):
 
