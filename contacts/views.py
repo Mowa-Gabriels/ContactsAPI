@@ -4,7 +4,7 @@ from rest_framework import generics
 from rest_framework.reverse import reverse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 
 
@@ -25,7 +25,8 @@ def APIOverview(request, format=None):
 class ContactList(generics.ListCreateAPIView):
     queryset = Contact.objects.all()
     serializer_class = ContactSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    
 
     
     def perform_create(self, serializer):
